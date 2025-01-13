@@ -1,0 +1,6 @@
+ollama
+llama-index
+llama-index-llms-ollama
+llama-index-embeddings-nomic
+llama-index-embeddings-ollama
+flask
