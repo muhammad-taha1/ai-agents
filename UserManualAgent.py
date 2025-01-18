@@ -8,7 +8,7 @@ nest_asyncio.apply()
 class UserManualAgent:
 
     def __init__(self):
-        Settings.embed_model = OllamaEmbedding(model_name="nomic-embed-text")
+        Settings.embed_model = OllamaEmbedding(model_name="tazarov/all-minilm-l6-v2-f32")
         Settings.llm = Ollama(model="tinyllama", request_timeout=60*5)
         # Settings.chunk_size = 512
         # Settings.chunk_overlap = 50
