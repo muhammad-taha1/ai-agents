@@ -4,6 +4,7 @@ from llama_index.embeddings.ollama import OllamaEmbedding
 
 import nest_asyncio
 nest_asyncio.apply()
+import time
 
 class UserManualAgent:
 
@@ -19,7 +20,11 @@ class UserManualAgent:
 
     def query(self, question):
         print("user query: ", question)
-        return self.query_engine.query(question)
+        start_time = time.time()
+        response = self.query_engine.query(question)
+        response_time = time.time() - start_time
+        print("response time: ", response_time)
+        return response
 
 
 if __name__ == "__main__":
