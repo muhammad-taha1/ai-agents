@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from UserManualAgent import UserManualAgent
+from user_manual_agent import UserManualAgent
 
 app = Flask(__name__)
 
