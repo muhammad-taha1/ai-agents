@@ -17,9 +17,9 @@ messages = ["Waking up AI agent...", "Almost there...", "Just a moment..."]
 # Initialize the UserManualAgent with cycling messages
 if 'agent' not in st.session_state:
     with st.spinner(""):
+        st.session_state.agent = UserManualAgent()
         cycle_messages(messages)
         # agent = UserManualAgent()
-        st.session_state.agent = UserManualAgent()
 
 
 placeholder.empty()  # Clear the placeholder
