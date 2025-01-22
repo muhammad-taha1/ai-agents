@@ -12,7 +12,7 @@ class UserManualAgent:
 
     def __init__(self):
         Settings.embed_model = OllamaEmbedding(model_name="all-minilm:22m")
-        Settings.llm = Ollama(model="tinyllama", request_timeout=60*5)
+        Settings.llm = Ollama(model="phi3:mini", request_timeout=60*5)
         Settings.chunk_size = 700
         Settings.chunk_overlap = 20
         documents = SimpleDirectoryReader("docs/user_manuals").load_data(show_progress=True)
