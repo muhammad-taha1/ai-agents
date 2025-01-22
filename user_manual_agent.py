@@ -45,7 +45,7 @@ class UserManualAgent:
             system_prompt=system_prompt,
             )
         
-        print(self.agent.chat("system prompt: " + system_prompt))
+        # print(self.agent.chat(system_prompt))
         
         
         print("done initializing agent")
