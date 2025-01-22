@@ -39,7 +39,7 @@ if st.button("Submit"):
         with st.spinner("Fetching response..."):
             response = st.session_state.agent.query(user_query)
             st.markdown("**Response**: \n\n")
-            st.write_stream(response.response_gen)
+            st.write(response)
             
     else:
         st.write("Please enter a question.")
