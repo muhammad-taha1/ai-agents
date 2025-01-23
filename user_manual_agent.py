@@ -1,18 +1,31 @@
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, Settings
 from llama_index.llms.ollama import Ollama
+from llama_index.llms.openrouter import OpenRouter
 from llama_index.embeddings.ollama import OllamaEmbedding
 from llama_index.core.agent import ReActAgent
 from llama_index.core.tools import QueryEngineTool
+from llama_index.core.llms import ChatMessage
 
 import nest_asyncio
 nest_asyncio.apply()
 import time
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
 class UserManualAgent:
 
     def __init__(self):
         Settings.embed_model = OllamaEmbedding(model_name="all-minilm:22m")
-        Settings.llm = Ollama(model="tinyllama", request_timeout=60*5)
+        # Settings.llm = Ollama(model="tinyllama", request_timeout=60*5)
+        llm = OpenRouter(
+            api_key=os.getenv("OPEN_ROUTER_KEY"),
+            model="meta-llama/llama-3.2-3b-instruct:free",
+            request_timeout=60*5
+        )
+
+        Settings.llm = llm
+
         Settings.chunk_size = 700
         Settings.chunk_overlap = 20
         documents = SimpleDirectoryReader("docs/user_manuals").load_data(show_progress=True)
@@ -40,12 +53,17 @@ class UserManualAgent:
             """
         
         self.agent = ReActAgent.from_tools(
-            [user_manual_query_tool],
+            tools=[user_manual_query_tool],
+            llm=Settings.llm,
             verbose=True,
             system_prompt=system_prompt,
             )
         
         # print(self.agent.chat(system_prompt))
+
+        # message = ChatMessage(role="user", content="Tell me a joke")
+        # resp = llm.chat([message])
+        # print(resp)
         
         
         print("done initializing agent")
@@ -54,7 +72,7 @@ class UserManualAgent:
     def query(self, question):
         print("user query: ", question)
         start_time = time.time()
-        response = self.agent.chat(question)
+        response = self.agent.stream_chat(question)
         response_time = time.time() - start_time
         print("response time: ", response_time)
         return response
