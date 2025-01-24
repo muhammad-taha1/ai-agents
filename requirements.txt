@@ -6,4 +6,4 @@ llama-index-embeddings-ollama
 llama-index-llms-openrouter
 python-dotenv
 streamlit
-
+flask

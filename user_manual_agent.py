@@ -71,11 +71,14 @@ class UserManualAgent:
             self.initialized = True
 
 
-    def query(self, question):
+    def query(self, question, stream=True):
         print("user query: ", question)
         start_time = time.time()
         try:
-            response = self.agent.stream_chat(question)
+            if stream:
+                response = self.agent.stream_chat(question)
+            else:
+                response = self.agent.chat(question)
             response_time = time.time() - start_time
             print("response time: ", response_time)
         except ValueError as e:
