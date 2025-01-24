@@ -74,9 +74,12 @@ class UserManualAgent:
     def query(self, question):
         print("user query: ", question)
         start_time = time.time()
-        response = self.agent.stream_chat(question)
-        response_time = time.time() - start_time
-        print("response time: ", response_time)
+        try:
+            response = self.agent.stream_chat(question)
+            response_time = time.time() - start_time
+            print("response time: ", response_time)
+        except ValueError as e:
+            response = "I cannot find this information in the user manuals provided."
         return response
 
 
