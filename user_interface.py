@@ -19,7 +19,7 @@ class UserInterface:
         if st.button("Submit"):
             if user_query:
                 with st.spinner("Fetching response..."):
-                    response = st.session_state.agent.query(user_query)
+                    response = self.user_manual_agent(user_query)
                     st.markdown("**Response**: \n\n")
                     st.write(response.response_gen)
                     
