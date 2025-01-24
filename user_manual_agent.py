@@ -16,7 +16,7 @@ load_dotenv()
 class UserManualAgent:
 
     def __init__(self):
-        Settings.embed_model = OllamaEmbedding(model_name="nomic-embed-text")
+        Settings.embed_model = OllamaEmbedding(model_name="all-minilm:22m")
         # Settings.llm = Ollama(model="tinyllama", request_timeout=60*5)
         llm = OpenRouter(
             api_key=os.getenv("OPEN_ROUTER_KEY"),
