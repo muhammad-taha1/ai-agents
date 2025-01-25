@@ -22,7 +22,7 @@ def display_interface(user_manual_agent):
             with st.spinner("Fetching response..."):
                 response = user_manual_agent.query(user_query)
                 st.markdown("**Response**: \n\n")
-                st.write(response.response_gen)
+                st.write_stream(response.response_gen)
                 
         else:
             st.write("Please enter a question.")
