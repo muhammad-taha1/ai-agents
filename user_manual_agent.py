@@ -55,6 +55,7 @@ class UserManualAgent:
                     2. If a query cannot be answered using the tool, respond with: "I cannot find this information in the user manuals provided."
                     3. Do not attempt to generate answers without using the tool.
                     4. Keep responses concise and directly answer the query.
+                    5. Return the response in markdown format.
 
                     Note: The tool name is **user_manual_query_tool**, and it should be used for all queries.
                 """
@@ -71,14 +72,11 @@ class UserManualAgent:
             self.initialized = True
 
 
-    def query(self, question, stream=True):
+    def query(self, question):
         print("user query: ", question)
         start_time = time.time()
         try:
-            if stream:
-                response = self.agent.stream_chat(question)
-            else:
-                response = self.agent.chat(question)
+            response = self.agent.chat(question)
             response_time = time.time() - start_time
             print("response time: ", response_time)
         except ValueError as e:
