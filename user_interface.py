@@ -20,7 +20,7 @@ def display_interface(user_manual_agent):
     if st.button("Submit"):
         if user_query:
             with st.spinner("Fetching response..."):
-                response = user_manual_agent(user_query)
+                response = user_manual_agent.query(user_query)
                 st.markdown("**Response**: \n\n")
                 st.write(response.response_gen)
                 
