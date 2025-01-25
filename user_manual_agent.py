@@ -65,6 +65,7 @@ class UserManualAgent:
                 llm=Settings.llm,
                 verbose=True,
                 system_prompt=system_prompt,
+                context=system_prompt
                 )
 
         
