@@ -54,7 +54,7 @@ class UserManualAgent:
                     1. Always rely on the **user_manual_query_tool** to retrieve information; do not use prior knowledge.
                     2. If a query cannot be answered using the tool, respond with: "I cannot find this information in the user manuals provided."
                     3. Do not attempt to generate answers without using the tool.
-                    4. Keep responses concise and directly answer the query.
+                    4. Give detailed responses to the user's queries, explaining everything in steps.
                     5. Return the response in markdown format.
 
                     Note: The tool name is **user_manual_query_tool**, and it should be used for all queries.
